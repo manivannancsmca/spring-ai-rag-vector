@@ -16,6 +16,8 @@ spring:
         options:
           model: mistral            # Keep mistral only for chat
           num_ctx: 8192
+          temperature: 0.1 # 0.0 to 0.2 is best for RAG
+          num_predict: 512 # Keep responses concise
     vectorstore:
       pgvector:
         index-type: ivfflat
