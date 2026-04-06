@@ -1,0 +1,31 @@
+services:
+  pgvector:
+    image: 'pgvector/pgvector:pg16'
+    container_name: pgvector
+    environment:
+      - 'POSTGRES_DB=vectordb'
+      - 'POSTGRES_PASSWORD=testpwd'
+      - 'POSTGRES_USER=testuser'
+    labels:
+      - "org.springframework.boot.service-connection=postgres"
+    ports:
+      - '5432:5432'
+    networks:
+      - ai-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    environment:
+      - 'PGADMIN_DEFAULT_EMAIL=admin@admin.com'
+      - 'PGADMIN_DEFAULT_PASSWORD=admin'
+    ports:
+      - '8031:80' # Access UI at http://localhost:8080
+    networks:
+      - ai-network
+    depends_on:
+      - pgvector
+
+networks:
+  ai-network:
+    driver: bridge

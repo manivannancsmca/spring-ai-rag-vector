@@ -1,0 +1,30 @@
+server:
+  port: 8030
+spring:
+  application:
+    name: spring-ai-rag-vector
+
+#ollma
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      embedding:
+        options:
+          model: nomic-embed-text   # ← Dedicated, fast embedding model
+          num_ctx: 8192
+      chat:
+        options:
+          model: mistral            # Keep mistral only for chat
+          num_ctx: 8192
+    vectorstore:
+      pgvector:
+        index-type: ivfflat
+        initialize-schema: true
+        remove-existing-vector-store-table: false
+        dimensions: 768    
+
+#postgresql
+  datasource:
+    url: jdbc:postgresql://localhost:5432/vectordb
+    username: testuser
+    password: testpwd
