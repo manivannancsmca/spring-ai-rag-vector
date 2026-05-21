@@ -9,5 +9,4 @@ public class SpringAiRagVectorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringAiRagVectorApplication.class, args);
 	}
-
 }
