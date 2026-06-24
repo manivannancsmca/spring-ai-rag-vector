@@ -29,6 +29,7 @@ public class DocumentIngestionService implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        
         // Check if already ingested
         Integer count = jdbcTemplate.queryForObject(
             "SELECT COUNT(*) FROM vector_store", Integer.class);
